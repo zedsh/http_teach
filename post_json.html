@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+          <meta charset="utf-8">
+            <title>HTML TEACH EXAMPLES</title>
+            <meta name="author" content="">
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+
+    <body>
+          <h1>POST JSON</h1>
+            <form method="POST" action="process.php">
+                <input type="TEXT" name="test1" value="test">
+                <input type="SUBMIT" value="Отправить">
+            </form>
+            
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+          <script>
+            $(document).on("submit",'form',function(event){
+              event.preventDefault(); 
+              $.ajax({
+              url:$(this).attr('action'),
+              type:"POST",
+              data:JSON.stringify($(this).serializeArray()),
+              contentType:"application/json; charset=utf-8",
+              dataType:"json",
+              success: function(data){
+                 console.log(data);
+              }
+             })             
+            });
+          </script>
+    </body>
+
+</html>
